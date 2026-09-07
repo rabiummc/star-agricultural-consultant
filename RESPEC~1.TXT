@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star Agricultural Consultant LTD</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1a5c3a;
+      --primary-light: #2d8a5a;
+      --primary-dark: #0d3d24;
+      --accent: #d4a843;
+      --accent-light: #f0d78c;
+      --bg-cream: #faf8f3;
+      --bg-white: #ffffff;
+      --text-dark: #1a1a1a;
+      --text-muted: #5a5a5a;
+      --border: #e8e4dc;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.12);
+      --radius: 16px;
+      --radius-sm: 8px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-cream);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+    /* Navigation */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      padding: 0 5%;
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    .nav-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 12px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.2rem;
+    }
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none; color: var(--text-dark);
+      font-weight: 500; font-size: 0.9rem;
+      transition: color 0.2s; position: relative;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: var(--primary);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: var(--primary); color: white;
+      padding: 10px 24px; border-radius: 50px;
+      text-decoration: none; font-weight: 600; font-size: 0.85rem;
+      transition: all 0.3s;
+    }
+    .nav-cta:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .mobile-menu-btn {
+      display: none; background: none; border: none;
+      font-size: 1.5rem; cursor: pointer; color: var(--primary);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+      display: flex; align-items: center;
+      padding: 120px 5% 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.08)"/><circle cx="40" cy="80" r="2" fill="rgba(255,255,255,0.06)"/><circle cx="70" cy="70" r="1.2" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="60" r="0.8" fill="rgba(255,255,255,0.07)"/></svg>');
+      background-size: 200px 200px;
+      animation: float 20s linear infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-50px) rotate(5deg); }
+    }
+    .hero-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+      align-items: center; position: relative; z-index: 1;
+    }
+    .hero-content h1 {
+      font-size: 3.5rem; color: white; line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .hero-content h1 span {
+      color: var(--accent-light);
+      font-style: italic;
+    }
+    .hero-content p {
+      color: rgba(255,255,255,0.85); font-size: 1.15rem;
+      margin-bottom: 32px; max-width: 500px;
+    }
+    .hero-btns {
+      display: flex; gap: 16px; flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--accent); color: var(--primary-dark);
+      padding: 14px 32px; border-radius: 50px;
+      text-decoration: none; font-weight: 700;
+      transition: all 0.3s; display: inline-block;
+    }
+    .btn-primary:hover {
+      background: var(--accent-light); transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(212,168,67,0.3);
+    }
+    .btn-secondary {
+      background: transparent; color: white;
+      padding: 14px 32px; border-radius: 50px;
+      text-decoration: none; font-weight: 600;
+      border: 2px solid rgba(255,255,255,0.3);
+      transition: all 0.3s; display: inline-block;
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1); border-color: white;
+    }
+    .hero-stats {
+      display: flex; gap: 40px; margin-top: 48px;
+      padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .stat h3 { color: var(--accent); font-size: 2rem; font-weight: 700; }
+    .stat p { color: rgba(255,255,255,0.7); font-size: 0.85rem; }
+
+    .hero-images {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      transform: rotate(-3deg);
+    }
+    .hero-img {
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transition: transform 0.5s ease;
+    }
+    .hero-img:hover { transform: scale(1.03) rotate(1deg); }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-img:nth-child(1) { height: 280px; margin-top: 40px; }
+    .hero-img:nth-child(2) { height: 220px; }
+    .hero-img:nth-child(3) { height: 200px; margin-top: -40px; }
+    .hero-img:nth-child(4) { height: 260px; margin-top: -20px; }
+
+    /* Section Styles */
+    .section {
+      padding: 100px 5%;
+      max-width: 1400px; margin: 0 auto;
+    }
+    .section-header {
+      text-align: center; margin-bottom: 60px;
+    }
+    .section-header h2 {
+      font-size: 2.5rem; color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+    .section-header p {
+      color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto;
+    }
+    .section-label {
+      display: inline-block;
+      background: rgba(26,92,58,0.08); color: var(--primary);
+      padding: 6px 16px; border-radius: 50px;
+      font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1px; margin-bottom: 16px;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    }
+    .service-card {
+      background: var(--bg-white); border-radius: var(--radius);
+      padding: 36px 28px; text-align: center;
+      box-shadow: var(--shadow); border: 1px solid var(--border);
+      transition: all 0.4s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-8px); box-shadow: var(--shadow-lg);
+      border-color: var(--primary-light);
+    }
+    .service-icon {
+      width: 64px; height: 64px; margin: 0 auto 20px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.5rem;
+    }
+    .service-card h3 {
+      font-size: 1.1rem; margin-bottom: 10px; color: var(--primary-dark);
+    }
+    .service-card p {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;
+    }
+
+    /* Products */
+    .product-filters {
+      display: flex; justify-content: center; gap: 12px; margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 10px 24px; border-radius: 50px; border: 1px solid var(--border);
+      background: var(--bg-white); color: var(--text-muted);
+      font-weight: 500; cursor: pointer; transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary); color: white; border-color: var(--primary);
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 28px;
+    }
+    .product-card {
+      background: var(--bg-white); border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: all 0.4s ease; cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-6px); box-shadow: var(--shadow-lg);
+    }
+    .product-img {
+      height: 220px; overflow: hidden; position: relative;
+    }
+    .product-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .product-card:hover .product-img img { transform: scale(1.08); }
+    .product-badge {
+      position: absolute; top: 16px; left: 16px;
+      background: var(--accent); color: var(--primary-dark);
+      padding: 4px 12px; border-radius: 50px;
+      font-size: 0.75rem; font-weight: 700;
+    }
+    .product-info { padding: 24px; }
+    .product-info h3 {
+      font-size: 1.15rem; color: var(--primary-dark); margin-bottom: 8px;
+    }
+    .product-info .category {
+      color: var(--primary-light); font-size: 0.8rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;
+    }
+    .product-info p {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;
+    }
+    .benefits-list {
+      margin-top: 14px; padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .benefits-list li {
+      list-style: none; font-size: 0.82rem; color: var(--text-muted);
+      padding: 4px 0; padding-left: 20px; position: relative;
+    }
+    .benefits-list li::before {
+      content: '✓'; position: absolute; left: 0;
+      color: var(--primary-light); font-weight: 700;
+    }
+
+    /* Library & Fish */
+    .feature-section {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      border-radius: var(--radius); padding: 80px 60px;
+      color: white; position: relative; overflow: hidden;
+    }
+    .feature-section::before {
+      content: ''; position: absolute; top: -50%; right: -20%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(212,168,67,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .feature-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+      align-items: center; position: relative; z-index: 1;
+    }
+    .feature-content h2 {
+      font-size: 2.2rem; margin-bottom: 20px;
+    }
+    .feature-content p {
+      color: rgba(255,255,255,0.8); margin-bottom: 28px; font-size: 1.05rem;
+    }
+    .feature-list {
+      list-style: none; display: flex; flex-direction: column; gap: 14px;
+    }
+    .feature-list li {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.95rem;
+    }
+    .feature-list li span {
+      width: 28px; height: 28px;
+      background: var(--accent); color: var(--primary-dark);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.8rem; flex-shrink: 0;
+    }
+    .feature-images {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .feature-img {
+      border-radius: var(--radius-sm); overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    .feature-img img { width: 100%; height: 180px; object-fit: cover; display: block; }
+    .feature-img:nth-child(2) { margin-top: 30px; }
+
+    /* Contact */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+    }
+    .contact-card {
+      background: var(--bg-white); border-radius: var(--radius);
+      padding: 40px; box-shadow: var(--shadow); border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .contact-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .contact-card h3 {
+      font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 8px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .contact-card .type {
+      color: var(--primary-light); font-size: 0.8rem; font-weight: 600;
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .contact-detail {
+      display: flex; align-items: flex-start; gap: 14px;
+      margin-bottom: 16px;
+    }
+    .contact-detail .icon {
+      width: 40px; height: 40px;
+      background: rgba(26,92,58,0.08); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary); font-size: 1rem; flex-shrink: 0;
+    }
+    .contact-detail div strong {
+      display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2px;
+    }
+    .contact-detail div span {
+      font-size: 0.95rem; color: var(--text-dark); font-weight: 500;
+    }
+
+    .contact-direct {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+      margin-top: 40px;
+    }
+    .contact-item {
+      background: var(--bg-white); border-radius: var(--radius);
+      padding: 32px; text-align: center; box-shadow: var(--shadow);
+      border: 1px solid var(--border); transition: all 0.3s;
+    }
+    .contact-item:hover { border-color: var(--primary-light); transform: translateY(-4px); }
+    .contact-item .icon-circle {
+      width: 56px; height: 56px; margin: 0 auto 16px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.3rem;
+    }
+    .contact-item h4 { font-size: 1rem; margin-bottom: 6px; color: var(--primary-dark); }
+    .contact-item p { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* Footer */
+    .footer {
+      background: var(--primary-dark); color: white; padding: 60px 5% 30px;
+    }
+    .footer-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    }
+    .footer-brand .logo { color: white; margin-bottom: 16px; }
+    .footer-brand p {
+      color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.7;
+    }
+    .footer h4 {
+      font-size: 1rem; margin-bottom: 20px; color: var(--accent-light);
+    }
+    .footer-links {
+      list-style: none; display: flex; flex-direction: column; gap: 12px;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent-light); }
+    .footer-bottom {
+      max-width: 1400px; margin: 40px auto 0;
+      padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center; color: rgba(255,255,255,0.5); font-size: 0.85rem;
+    }
+
+    /* Scroll animations */
+    .reveal {
+      opacity: 0; transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* Mobile */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-content p { margin: 0 auto 32px; }
+      .hero-btns { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-images { display: none; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .feature-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: block; }
+      .hero-content h1 { font-size: 2.2rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: 1fr; }
+      .contact-direct { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .section { padding: 60px 5%; }
+      .feature-section { padding: 50px 30px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">🌿</div>
+      Star Agricultural Consultant
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#library">Library & Fish</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get in Touch</a>
+    <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <h1>Nurturing Nature, <span>Harvesting Health</span></h1>
+      <p>Star Agricultural Consultant LTD — your trusted partner in agricultural management, hybrid seeds, agrochemicals, veterinary solutions, and premium farm produce from Kano, Nigeria.</p>
+      <div class="hero-btns">
+        <a href="#products" class="btn-primary">Explore Our Farm</a>
+        <a href="#contact" class="btn-secondary">Contact Us</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <h3>15+</h3>
+          <p>Crop Varieties</p>
+        </div>
+        <div class="stat">
+          <h3>10+</h3>
+          <p>Medicinal Herbs</p>
+        </div>
+        <div class="stat">
+          <h3>2</h3>
+          <p>Fish Species</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero-images">
+      <div class="hero-img"><img src="https://kimi-web-img.kimi.ai/img/getfarms.in/882b0b32b98467d77b71a57d1b261c53d0696cd6.webp" alt="Mango Farm"></div>
+      <div class="hero-img"><img src="https://kimi-web-img.kimi.ai/img/www.foodunfolded.com/527516e0d7c2a292b6f5d0b13dababf9f7507f1c.webp" alt="Banana Plantation"></div>
+      <div class="hero-img"><img src="https://kimi-web-img.kimi.ai/img/etedge-insights.com/111e8558025424a0b8f030de0182abf062eed3b2.png" alt="Oil Palm"></div>
+      <div class="hero-img"><img src="https://kimi-web-img.kimi.ai/img/www.plantwhatwhen.com/10b02bf00adaf27fb897e51238fa012d0773af6f.jpg" alt="Cocoyam"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="section-header reveal">
+    <span class="section-label">What We Do</span>
+    <h2>Our Services</h2>
+    <p>Comprehensive agricultural solutions tailored to boost productivity and sustainability for farmers across Nigeria.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <h3>Agric Management</h3>
+      <p>Expert consultancy in farm planning, crop rotation, soil management, and sustainable agricultural practices.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌱</div>
+      <h3>Hybrid Seeds</h3>
+      <p>High-yield, disease-resistant hybrid seeds for maximum productivity and better harvest quality.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🧪</div>
+      <h3>Agrochemicals</h3>
+      <p>Quality fertilizers, pesticides, and herbicides to protect and nourish your crops effectively.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💊</div>
+      <h3>Veterinary Drugs</h3>
+      <p>Reliable veterinary medicines and supplements to keep your livestock healthy and productive.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="products" style="background: var(--bg-white); border-radius: 40px 40px 0 0; margin-top: -40px; padding-top: 120px;">
+  <div class="section-header reveal">
+    <span class="section-label">Our Produce</span>
+    <h2>Farm Products & Health Benefits</h2>
+    <p>From our fertile farms at Kwarin Chiromawa to your table — fresh, organic, and packed with nutrients.</p>
+  </div>
+
+  <div class="product-filters reveal">
+    <button class="filter-btn active" onclick="filterProducts('all', this)">All Products</button>
+    <button class="filter-btn" onclick="filterProducts('crops', this)">Crops & Fruits</button>
+    <button class="filter-btn" onclick="filterProducts('herbs', this)">Medicinal Herbs</button>
+    <button class="filter-btn" onclick="filterProducts('livestock', this)">Livestock</button>
+    <button class="filter-btn" onclick="filterProducts('aquaculture', this)">Aquaculture</button>
+  </div>
+
+  <div class="products-grid reveal" id="productsGrid">
+
+    <!-- CROPS -->
+    <div class="product-card" data-category="crops">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/getfarms.in/882b0b32b98467d77b71a57d1b261c53d0696cd6.webp" alt="Mango">
+        <span class="product-badge">Crop</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Crops & Fruits</div>
+        <h3>Mango</h3>
+        <p>The "King of Fruits" — sweet, juicy, and incredibly nutritious.</p>
+        <ul class="benefits-list">
+          <li>Rich in Vitamin A & C for immune support</li>
+          <li>High in antioxidants and dietary fiber</li>
+          <li>Promotes healthy skin and eye health</li>
+          <li>Aids digestion and gut health</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="crops">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/m.media-amazon.com/5ea4005a6e450a7469faacaaeba03d3abef94866.jpg" alt="Turmeric">
+        <span class="product-badge">Crop</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Crops & Fruits</div>
+        <h3>Turmeric</h3>
+        <p>The golden spice of life — renowned for powerful medicinal properties.</p>
+        <ul class="benefits-list">
+          <li>Potent anti-inflammatory compound curcumin</li>
+          <li>Strong antioxidant properties</li>
+          <li>Boosts brain function and memory</li>
+          <li>Supports heart health and circulation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="crops">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/cdn.britannica.com/b7f7bd0c25d20d9efcab98ec16cbe09ab8cc4d4d.jpg" alt="Sweet Corn">
+        <span class="product-badge">Crop</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Crops & Fruits</div>
+        <h3>Sweet Corn</h3>
+        <p>Golden, crunchy, and naturally sweet — a staple grain packed with energy.</p>
+        <ul class="benefits-list">
+          <li>High in dietary fiber for digestion</li>
+          <li>Rich in B-vitamins and folate</li>
+          <li>Contains antioxidants lutein and zeaxanthin</li>
+          <li>Great source of sustained energy</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="crops">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/www.plantwhatwhen.com/10b02bf00adaf27fb897e51238fa012d0773af6f.jpg" alt="Coco Yam">
+        <span class="product-badge">Crop</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Crops & Fruits</div>
+        <h3>Coco Yam</h3>
+        <p>A tropical root vegetable — starchy, nutty, and highly nutritious.</p>
+        <ul class="benefits-list">
+          <li>Excellent source of complex carbohydrates</li>
+          <li>Rich in potassium for heart health</li>
+          <li>Contains Vitamin E and magnesium</li>
+          <li>Supports healthy digestion</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="crops">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/etedge-insights.com/111e8558025424a0b8f030de0182abf062eed3b2.png" alt="Oil Palm">
+        <span class="product-badge">Crop</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Crops & Fruits</div>
+        <h3>Oil Palm</h3>
+        <p>The world's most efficient oil crop — versatile and nutrient-dense.</p>
+        <ul class="benefits-list">
+          <li>Rich in Vitamin E (tocotrienols & tocopherols)</li>
+          <li>Contains natural antioxidants</li>
+          <li>Supports healthy skin and hair</li>
+          <li>Provides healthy fatty acids</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="crops">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/www.foodunfolded.com/527516e0d7c2a292b6f5d0b13dababf9f7507f1c.webp" alt="Banana">
+        <span class="product-badge">Crop</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Crops & Fruits</div>
+        <h3>Banana</h3>
+        <p>Nature's perfect snack — convenient, delicious, and power-packed.</p>
+        <ul class="benefits-list">
+          <li>Excellent source of potassium</li>
+          <li>Natural energy booster</li>
+          <li>Rich in Vitamin B6 and fiber</li>
+          <li>Supports heart and muscle function</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="crops">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/cdn.mos.cms.futurecdn.net/957983a5ea9bedcf5bb767f586c3ef6308d85e0f.jpg" alt="Paw Paw">
+        <span class="product-badge">Crop</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Crops & Fruits</div>
+        <h3>Paw Paw (Papaya)</h3>
+        <p>Tropical delight with enzyme-rich flesh for optimal digestion.</p>
+        <ul class="benefits-list">
+          <li>Contains digestive enzyme papain</li>
+          <li>High in Vitamin C and Vitamin A</li>
+          <li>Supports skin health and wound healing</li>
+          <li>Boosts immune system naturally</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="crops">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/cdn.britannica.com/b7f7bd0c25d20d9efcab98ec16cbe09ab8cc4d4d.jpg" alt="Dates">
+        <span class="product-badge">Crop</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Crops & Fruits</div>
+        <h3>Dates</h3>
+        <p>Nature's candy — sweet, chewy, and incredibly nutrient-dense.</p>
+        <ul class="benefits-list">
+          <li>Natural energy booster with natural sugars</li>
+          <li>High in fiber for digestive health</li>
+          <li>Rich in potassium and magnesium</li>
+          <li>Supports brain health and memory</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- HERBS -->
+    <div class="product-card" data-category="herbs">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/figures.semanticscholar.org/a306001188cfa9515e26a302822d4fd8f9a1d397.png" alt="Miracle Leaf">
+        <span class="product-badge" style="background:#e74c3c;">Herb</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Medicinal Herbs</div>
+        <h3>Miracle Leaf</h3>
+        <p>Also known as Kalanchoe pinnata — a powerful healing plant.</p>
+        <ul class="benefits-list">
+          <li>Accelerates wound healing</li>
+          <li>Anti-inflammatory properties</li>
+          <li>Antimicrobial and antiviral effects</li>
+          <li>Supports respiratory health</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="herbs">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/www.mdpi.com/3f60e36cbc63a6f21defd88b454ed040e8d4d13d.png" alt="Cassia Alata">
+        <span class="product-badge" style="background:#e74c3c;">Herb</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Medicinal Herbs</div>
+        <h3>Cassia Alata</h3>
+        <p>Traditional medicinal plant known as the "Ringworm Bush."</p>
+        <ul class="benefits-list">
+          <li>Potent antifungal properties</li>
+          <li>Treats skin conditions and ringworm</li>
+          <li>Natural laxative effect</li>
+          <li>Anti-inflammatory benefits</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="herbs">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/gardenerspath.com/31bfac21da2681895c8c12991d24cdea576467f9.jpg" alt="Oregano">
+        <span class="product-badge" style="background:#e74c3c;">Herb</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Medicinal Herbs</div>
+        <h3>Oregano</h3>
+        <p>Aromatic herb with powerful medicinal and culinary properties.</p>
+        <ul class="benefits-list">
+          <li>Rich in antioxidants</li>
+          <li>Natural antibacterial properties</li>
+          <li>Anti-inflammatory effects</li>
+          <li>Supports digestive health</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="herbs">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/specialtyproduce.com/f73fa7732d4b0daeb4feedba925579b262788339.png" alt="Shaddock">
+        <span class="product-badge" style="background:#e74c3c;">Herb</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Medicinal Herbs</div>
+        <h3>Shaddock (Pomelo)</h3>
+        <p>The largest citrus fruit — refreshing and health-boosting.</p>
+        <ul class="benefits-list">
+          <li>Extremely high in Vitamin C</li>
+          <li>Rich in fiber for digestion</li>
+          <li>Supports heart health</li>
+          <li>Aids in weight management</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="herbs">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/www.logees.com/d252ffcf644be11bc6842c13be45799f5a4ec6ed.jpg" alt="Desert Rose">
+        <span class="product-badge" style="background:#e74c3c;">Herb</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Medicinal Herbs</div>
+        <h3>Desert Rose</h3>
+        <p>Stunning ornamental plant with traditional medicinal uses.</p>
+        <ul class="benefits-list">
+          <li>Used in traditional medicine</li>
+          <li>Beautiful ornamental value</li>
+          <li>Drought-resistant and hardy</li>
+          <li>Attracts pollinators to the farm</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="herbs">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/upload.wikimedia.org/92742c6f3602167eaac55ee094af4b5ded96d320.jpg" alt="Desert Date">
+        <span class="product-badge" style="background:#e74c3c;">Herb</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Medicinal Herbs</div>
+        <h3>Desert Date</h3>
+        <p>Hardy tree producing nutritious fruit with medicinal value.</p>
+        <ul class="benefits-list">
+          <li>Nutritious fruit rich in nutrients</li>
+          <li>Used in traditional African medicine</li>
+          <li>Drought-resistant and sustainable</li>
+          <li>Supports liver and digestive health</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="herbs">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/www3.ctahr.hawaii.edu/db3852dc655f78c4f34989964b3eeaf411083a4e.jpg" alt="Noni">
+        <span class="product-badge" style="background:#e74c3c;">Herb</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Medicinal Herbs</div>
+        <h3>Noni Plant</h3>
+        <p>Ancient Polynesian superfruit with remarkable healing properties.</p>
+        <ul class="benefits-list">
+          <li>Boosts immune system function</li>
+          <li>Powerful antioxidant properties</li>
+          <li>Anti-inflammatory and pain relief</li>
+          <li>Supports cellular health</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="herbs">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/images.immediate.co.uk/ef6e1b6c1aa48bd97d550893658cb7315f5e6649.jpg" alt="Moringa">
+        <span class="product-badge" style="background:#e74c3c;">Herb</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Medicinal Herbs</div>
+        <h3>Moringa</h3>
+        <p>The "Miracle Tree" — one of the most nutrient-dense plants on Earth.</p>
+        <ul class="benefits-list">
+          <li>Packed with vitamins, minerals & protein</li>
+          <li>Anti-inflammatory compounds</li>
+          <li>Helps regulate blood sugar</li>
+          <li>Supports healthy cholesterol levels</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- LIVESTOCK -->
+    <div class="product-card" data-category="livestock">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/cdn.britannica.com/b7f7bd0c25d20d9efcab98ec16cbe09ab8cc4d4d.jpg" alt="Chicken">
+        <span class="product-badge" style="background:#f39c12;">Livestock</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Livestock</div>
+        <h3>Chicken</h3>
+        <p>Healthy, free-range poultry raised with care on our farm.</p>
+        <ul class="benefits-list">
+          <li>Excellent source of lean protein</li>
+          <li>Rich in B-vitamins (B3, B6, B12)</li>
+          <li>Contains selenium for thyroid health</li>
+          <li>Supports muscle growth and repair</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- AQUACULTURE -->
+    <div class="product-card" data-category="aquaculture">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/images.thefishsite.com/c2d82228207c0ff7ed52543d41993d99d0c6b525.jpg" alt="Catfish">
+        <span class="product-badge" style="background:#3498db;">Fish</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Aquaculture</div>
+        <h3>Catfish</h3>
+        <p>Fresh, sustainably farmed catfish from our ponds.</p>
+        <ul class="benefits-list">
+          <li>High-quality lean protein</li>
+          <li>Rich in Omega-3 fatty acids</li>
+          <li>Excellent source of Vitamin B12</li>
+          <li>Supports heart and brain health</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="aquaculture">
+      <div class="product-img">
+        <img src="https://kimi-web-img.kimi.ai/img/cdn.wikifarmer.com/5935af53c1d0d6b759fcfe466908f913a32583a5.jpg" alt="Tilapia">
+        <span class="product-badge" style="background:#3498db;">Fish</span>
+      </div>
+      <div class="product-info">
+        <div class="category">Aquaculture</div>
+        <h3>Tilapia</h3>
+        <p>Mild, flaky, and nutritious — a favorite for healthy eating.</p>
+        <ul class="benefits-list">
+          <li>High protein, low fat content</li>
+          <li>Contains Omega-3 fatty acids</li>
+          <li>Good source of potassium</li>
+          <li>Supports muscle and bone health</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="library">
+  <div class="feature-section reveal">
+    <div class="feature-grid">
+      <div class="feature-content">
+        <span class="section-label" style="background:rgba(255,255,255,0.15);color:var(--accent-light);">Knowledge Hub</span>
+        <h2>Library & Aquaculture</h2>
+        <p>We believe knowledge is the seed of progress. Our agricultural library houses valuable resources for farmers, students, and researchers. Combined with our thriving fish farm, we offer a complete agricultural ecosystem.</p>
+        <ul class="feature-list">
+          <li><span>1</span> Agricultural books, journals, and research papers</li>
+          <li><span>2</span> Training materials on modern farming techniques</li>
+          <li><span>3</span> Catfish & Tilapia production in managed ponds</li>
+          <li><span>4</span> Sustainable aquaculture best practices</li>
+          <li><span>5</span> Free consultation for library visitors</li>
+        </ul>
+      </div>
+      <div class="feature-images">
+        <div class="feature-img"><img src="https://kimi-web-img.kimi.ai/img/media.wiley.com/21e583c2ffce6f4975d29add171191e702cd2e47.jpg" alt="Agricultural Library"></div>
+        <div class="feature-img"><img src="https://kimi-web-img.kimi.ai/img/images.thefishsite.com/c2d82228207c0ff7ed52543d41993d99d0c6b525.jpg" alt="Fish Farm"></div>
+        <div class="feature-img"><img src="https://kimi-web-img.kimi.ai/img/cdn.wikifarmer.com/5935af53c1d0d6b759fcfe466908f913a32583a5.jpg" alt="Tilapia"></div>
+        <div class="feature-img"><img src="https://kimi-web-img.kimi.ai/img/www.foodunfolded.com/527516e0d7c2a292b6f5d0b13dababf9f7507f1c.webp" alt="Farm"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="section-header reveal">
+    <span class="section-label">Reach Out</span>
+    <h2>Contact Us</h2>
+    <p>Visit our farm or office. We're ready to help you grow.</p>
+  </div>
+
+  <div class="contact-grid reveal">
+    <div class="contact-card">
+      <h3>🚜 Farm Location</h3>
+      <div class="type">Primary Farm</div>
+      <div class="contact-detail">
+        <div class="icon">📍</div>
+        <div>
+          <strong>Address</strong>
+          <span>KM 52 Zaria Road, Kwarin Chiromawa, Kano State, Nigeria</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">🌿</div>
+        <div>
+          <strong>Products</strong>
+          <span>Mango, Turmeric, Sweet Corn, Coco Yam, Oil Palm, Banana, Herbs, Chicken, Fish</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <h3>🏢 Office Location</h3>
+      <div class="type">Head Office</div>
+      <div class="contact-detail">
+        <div class="icon">📍</div>
+        <div>
+          <strong>Address</strong>
+          <span>No 12 Zoo Road, Kano State, Nigeria</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">📦</div>
+        <div>
+          <strong>Services</strong>
+          <span>Agric Consultancy, Hybrid Seeds, Chemicals, Veterinary Drugs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-direct reveal">
+    <div class="contact-item">
+      <div class="icon-circle">📞</div>
+      <h4>Phone</h4>
+      <p>08023098655</p>
+    </div>
+    <div class="contact-item">
+      <div class="icon-circle">✉️</div>
+      <h4>Email</h4>
+      <p>mchiromawa@yahoo.com</p>
+    </div>
+    <div class="contact-item">
+      <div class="icon-circle">🕐</div>
+      <h4>Working Hours</h4>
+      <p>Mon - Sat: 8:00 AM - 6:00 PM</p>
+    </div>
+    <div class="contact-item">
+      <div class="icon-circle">📚</div>
+      <h4>Library Access</h4>
+      <p>Open to Visitors Daily</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <div class="logo-icon">🌿</div>
+        Star Agricultural Consultant
+      </a>
+      <p>Your trusted partner in agricultural excellence. From farm management consultancy to premium produce, hybrid seeds, agrochemicals, and veterinary solutions — we grow with you.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul class="footer-links">
+        <li><a href="#services">Farm Management</a></li>
+        <li><a href="#services">Hybrid Seeds</a></li>
+        <li><a href="#services">Agrochemicals</a></li>
+        <li><a href="#services">Veterinary Drugs</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul class="footer-links">
+        <li><a href="tel:08023098655">08023098655</a></li>
+        <li><a href="mailto:mchiromawa@yahoo.com">mchiromawa@yahoo.com</a></li>
+        <li><a href="#">KM 52 Zaria Road, Kwarin Chiromawa</a></li>
+        <li><a href="#">No 12 Zoo Road, Kano</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Star Agricultural Consultant LTD. All rights reserved. | Nurturing Nature, Harvesting Health.</p>
+  </div>
+</footer>
+
+<script>
+  // Product filtering
+  function filterProducts(category, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const cards = document.querySelectorAll('.product-card');
+    cards.forEach(card => {
+      if (category === 'all' || card.dataset.category === category) {
+        card.style.display = 'block';
+        setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, 50);
+      } else {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        setTimeout(() => { card.style.display = 'none'; }, 300);
+      }
+    });
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const revealOnScroll = () => {
+    reveals.forEach(el => {
+      const windowHeight = window.innerHeight;
+      const elementTop = el.getBoundingClientRect().top;
+      if (elementTop < windowHeight - 80) {
+        el.classList.add('active');
+      }
+    });
+  };
+  window.addEventListener('scroll', revealOnScroll);
+  revealOnScroll();
+
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+    } else {
+      navbar.style.boxShadow = 'none';
+    }
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Mobile menu toggle
+  function toggleMenu() {
+    const nav = document.querySelector('.nav-links');
+    nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+    nav.style.position = 'absolute';
+    nav.style.top = '72px';
+    nav.style.left = '0';
+    nav.style.right = '0';
+    nav.style.flexDirection = 'column';
+    nav.style.background = 'white';
+    nav.style.padding = '20px';
+    nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+    nav.style.gap = '16px';
+  }
+</script>
+
+</body>
+</html>
